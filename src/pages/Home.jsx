@@ -60,7 +60,7 @@ export default function Home() {
           <div className="hero-visual">
 
             <img
-              src="/assets/hero-space.jpg"
+              src={`${import.meta.env.BASE_URL}assets/hero-space.jpg`}
               alt="Space themed portfolio illustration"
             />
 
@@ -226,17 +226,17 @@ export default function Home() {
 
             <ProjectPlaceholder
               name="Next.js Web Application"
-              image="/assets/project-3.jpg"
+              image={`${import.meta.env.BASE_URL}assets/project-3.jpg`}
             />
 
             <ProjectPlaceholder
               name="API Driven Application"
-              image="/assets/project-1.jpg"
+              image={`${import.meta.env.BASE_URL}assets/project-1.jpg`}
             />
 
             <ProjectPlaceholder
               name="Full-Stack Project"
-              image="/assets/project-2.jpg"
+              image={`${import.meta.env.BASE_URL}assets/project-2.jpg`}
             />
 
           </div>
