@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 
@@ -1392,6 +1391,19 @@ input {
   .contact-video-card {
     padding: 25px 18px;
   }
+
+.nav-button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-button:hover {
+  color: #b62c9e;
+}
 
 
   .contact-details {

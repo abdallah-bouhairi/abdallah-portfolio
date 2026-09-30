@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import SectionTitle from '../components/SectionTitle';
@@ -10,9 +9,9 @@ import {
   setFilter,
 } from '../redux/projectsSlice';
 
+const ASSET_BASE = import.meta.env.BASE_URL;
 
 export default function Projects() {
-
   const dispatch = useDispatch();
 
   const {
@@ -22,42 +21,42 @@ export default function Projects() {
     filter,
   } = useSelector((state) => state.projects);
 
-
   const [search, setSearch] = useState('');
-
 
   // Fetch projects from GitHub API
   useEffect(() => {
-
     if (status === 'idle') {
       dispatch(fetchProjects());
     }
-
   }, [status, dispatch]);
-
 
   // Filter and search projects
   const visible = useMemo(() => {
-
     return items.filter((project) => {
+      const language = (project.language || '').toLowerCase();
 
-      const matchesFilter =
-        filter === 'all' ||
-        (project.language || '').toLowerCase() === filter;
+      let matchesFilter = true;
 
+      if (filter === 'javascript') {
+        matchesFilter =
+          language === 'javascript' ||
+          language === 'typescript';
+      }
+
+      if (filter === 'react') {
+        matchesFilter =
+          language === 'javascript' ||
+          language === 'typescript';
+      }
 
       const matchesSearch =
-        project.name
+        (project.name || '')
           .toLowerCase()
           .includes(search.toLowerCase());
 
-
       return matchesFilter && matchesSearch;
-
     });
-
   }, [items, filter, search]);
-
 
   return (
     <section className="projects-page section-shell">
@@ -66,7 +65,6 @@ export default function Projects() {
         title="My Projects"
         text="Projects loaded from the GitHub public API."
       />
-
 
       {/* =========================================
           PROJECT TOOLBAR
@@ -84,7 +82,6 @@ export default function Projects() {
             All
           </button>
 
-
           <button
             type="button"
             className={
@@ -98,7 +95,6 @@ export default function Projects() {
           >
             JavaScript
           </button>
-
 
           <button
             type="button"
@@ -116,7 +112,6 @@ export default function Projects() {
 
         </div>
 
-
         {/* Search */}
 
         <input
@@ -131,7 +126,6 @@ export default function Projects() {
 
       </div>
 
-
       {/* =========================================
           LOADING
       ========================================= */}
@@ -141,7 +135,6 @@ export default function Projects() {
           Loading projects…
         </div>
       )}
-
 
       {/* =========================================
           ERROR
@@ -153,7 +146,6 @@ export default function Projects() {
         </div>
       )}
 
-
       {/* =========================================
           PROJECTS
       ========================================= */}
@@ -164,13 +156,11 @@ export default function Projects() {
           {visible.length > 0 ? (
 
             visible.map((project, index) => (
-
               <ProjectCard
                 key={project.id}
                 project={project}
-                image={`/assets/project-${(index % 3) + 1}.jpg`}
+                image={`${ASSET_BASE}assets/project-${(index % 3) + 1}.jpg`}
               />
-
             ))
 
           ) : (
@@ -187,3 +177,4 @@ export default function Projects() {
     </section>
   );
 }
+

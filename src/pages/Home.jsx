@@ -3,6 +3,8 @@ import { useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import SkillCard from '../components/SkillCard';
 
+const ASSET_BASE = import.meta.env.BASE_URL;
+
 const skills = [
   ['Frontend Development', 95],
   ['Backend Development', 90],
@@ -10,8 +12,6 @@ const skills = [
 ];
 
 export default function Home() {
-
-  // Controls which project section is displayed
   const [activeSection, setActiveSection] = useState(1);
 
   return (
@@ -20,11 +20,8 @@ export default function Home() {
           HERO
       ========================== */}
       <section id="home" className="hero-video-style">
-
         <div className="hero-inner">
-
           <div className="hero-copy">
-
             <span className="welcome-badge">
               Welcome All In My Portfolio
             </span>
@@ -48,28 +45,19 @@ export default function Home() {
               MIS with analytical thinking.
             </p>
 
-            <Link
-              className="hero-connect"
-              to="/contact"
-            >
+            <Link className="hero-connect" to="/contact">
               Let's Connect <b>→</b>
             </Link>
-
           </div>
 
           <div className="hero-visual">
-
             <img
-              src={`${import.meta.env.BASE_URL}assets/hero-space.jpg`}
+              src={`${ASSET_BASE}assets/hero-space.jpg`}
               alt="Space themed portfolio illustration"
             />
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =========================
           SKILLS
@@ -78,14 +66,12 @@ export default function Home() {
         id="skills"
         className="skills-video-style section-shell"
       >
-
         <SectionTitle
           title="Skills"
           text="You Can See My Skills Here"
         />
 
         <div className="skills-panel">
-
           {skills.map(([title, value]) => (
             <SkillCard
               key={title}
@@ -93,25 +79,19 @@ export default function Home() {
               value={value}
             />
           ))}
-
         </div>
-
       </section>
-
 
       {/* =========================
           ABOUT
       ========================== */}
       <section className="about-video-style section-shell">
-
         <p>
           Business Computer / Management Information Systems +
           Philosophy background, with practical experience in React,
           APIs, GitHub, Jira, Notion and modern web development.
         </p>
-
       </section>
-
 
       {/* =========================
           PROJECTS
@@ -120,19 +100,13 @@ export default function Home() {
         id="projects"
         className="projects-video-style section-shell"
       >
-
         <SectionTitle
           title="Projects"
           text="A selection of frontend and full-stack work."
         />
 
-
-        {/* =========================
-            PROJECT TABS
-        ========================== */}
-
+        {/* PROJECT TABS */}
         <div className="project-tabs">
-
           <button
             type="button"
             className={activeSection === 1 ? 'active' : ''}
@@ -156,133 +130,93 @@ export default function Home() {
           >
             3rd Section
           </button>
-
         </div>
 
-
-        {/* =========================
-            SECTION 1
-        ========================== */}
-
+        {/* SECTION 1 */}
         {activeSection === 1 && (
-
           <div className="video-project-grid project-section-content">
-
             <ProjectPlaceholder
               name="React Portfolio"
-              image="/assets/project-1.jpg"
+              image={`${ASSET_BASE}assets/project-1.jpg`}
             />
 
             <ProjectPlaceholder
               name="Career Brain MVP"
-              image="/assets/project-2.jpg"
+              image={`${ASSET_BASE}assets/project-2.jpg`}
             />
 
             <ProjectPlaceholder
               name="Responsive Web App"
-              image="/assets/project-3.jpg"
+              image={`${ASSET_BASE}assets/project-3.jpg`}
             />
-
           </div>
-
         )}
 
-
-        {/* =========================
-            SECTION 2
-        ========================== */}
-
+        {/* SECTION 2 */}
         {activeSection === 2 && (
-
           <div className="video-project-grid project-section-content">
-
             <ProjectPlaceholder
               name="KinderGarten Management System"
-              image="/assets/project-2.jpg"
+              image={`${ASSET_BASE}assets/project-2.jpg`}
             />
 
             <ProjectPlaceholder
               name="Business Information System"
-              image="/assets/project-3.jpg"
+              image={`${ASSET_BASE}assets/project-3.jpg`}
             />
 
             <ProjectPlaceholder
               name="Data Management Application"
-              image="/assets/project-1.jpg"
+              image={`${ASSET_BASE}assets/project-1.jpg`}
             />
-
           </div>
-
         )}
 
-
-        {/* =========================
-            SECTION 3
-        ========================== */}
-
+        {/* SECTION 3 */}
         {activeSection === 3 && (
-
           <div className="video-project-grid project-section-content">
-
             <ProjectPlaceholder
               name="Next.js Web Application"
-              image={`${import.meta.env.BASE_URL}assets/project-3.jpg`}
+              image={`${ASSET_BASE}assets/project-3.jpg`}
             />
 
             <ProjectPlaceholder
               name="API Driven Application"
-              image={`${import.meta.env.BASE_URL}assets/project-1.jpg`}
+              image={`${ASSET_BASE}assets/project-1.jpg`}
             />
 
             <ProjectPlaceholder
               name="Full-Stack Project"
-              image={`${import.meta.env.BASE_URL}assets/project-2.jpg`}
+              image={`${ASSET_BASE}assets/project-2.jpg`}
             />
-
           </div>
-
         )}
 
-
-        {/* =========================
-            VIEW MORE
-        ========================== */}
-
+        {/* VIEW MORE */}
         <div className="center-button">
-
           <Link
             className="purple-button"
             to="/projects"
           >
             View More Projects
           </Link>
-
         </div>
-
       </section>
-
 
       {/* =========================
           EMAIL
       ========================== */}
       <section className="email-banner section-shell">
-
         <div className="email-card">
-
           <div>
-
             <h3>
               See My Projects At Once
               <br />
               &amp; leave Here Your E-mail Address
             </h3>
-
           </div>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-          >
-
+          <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               required
@@ -292,47 +226,33 @@ export default function Home() {
             <button type="submit">
               Submit
             </button>
-
           </form>
-
         </div>
-
       </section>
-
     </>
   );
 }
-
 
 /* =========================
    PROJECT CARD
 ========================= */
 
 function ProjectPlaceholder({ name, image }) {
-
   return (
-
     <article className="video-project-card">
-
       <img
         src={image}
         alt={`${name} preview`}
       />
 
       <div className="project-overlay">
-
-        <strong>
-          {name}
-        </strong>
+        <strong>{name}</strong>
 
         <Link to="/projects">
           Explore ↗
         </Link>
-
       </div>
-
     </article>
-
   );
 }
 
